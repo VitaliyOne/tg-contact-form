@@ -1,0 +1,27 @@
+/* стили для страницы */
+.form {
+    height: 120px;
+    width: 200px;
+}
+
+.textInpute {
+    border-radius: 5px;
+    width: 200px;
+}
+
+.feedback {
+    border-radius: 5px;
+    font-size: 20px;
+    height: 120px;
+    width: 200px;
+}
+
+.resultEvaluation {
+    font-size: 20px;
+}
+
+.sumbit {
+    border-radius: 5px;
+    
+
+}
