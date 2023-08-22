@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>HTML Template</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div> Форма обратной связи </div>
+		<form onsubmit="return false" class="form" action="" method="get">
+			<input class="textInpute" id="UserFirstName" type="text" value=""> <br>
+			<input class="textInpute" id="UserLastName" type="text" value=""> <br>
+			<input class="textInpute" id="UserEmail" type="text" value=""> <br>
+			<input id="Evaluation" type="range" step="1" min="1" max="5" value="">
+			<div id="resultEvaluation" class="resultEvaluation"></div>
+			<input class="feedback" id="Feedback" type="text" value="" autocomplete="off"> <br>
+			<input class="submit" type="submit" id="submit">
+		</form>
+		<script src="js/index.js"></script>
+	</body>
+</html>
