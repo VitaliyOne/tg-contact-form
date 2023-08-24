@@ -1,27 +1,81 @@
 /* стили для страницы */
-.form {
-    height: 120px;
-    width: 200px;
+.formFeedback{
+    background: linear-gradient(45deg, rgba(103, 0, 31, .7), rgba(34, 101, 163, .5)); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    border-radius: 15px;
+    padding: 30px;
+}
+.titleFeedback {
+    font-size: 30px;
+    margin-top: 10px;
+    text-shadow: 1px 1px 1px #271739;
 }
 
-.textInpute {
+.formFeedback {
+    width: 220px;
+    font-size: 20px;
+    height: 350px;
+}
+
+.textFeedback {
+    font-size: 15px;
+    padding-top: 5px;
+}
+
+.textInputeFeedback {
     border-radius: 5px;
-    width: 200px;
+    width: 220px;
 }
 
 .feedback {
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 15px;
     height: 120px;
-    width: 200px;
+    width: 220px;
 }
 
-.resultEvaluation {
+.new {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.resultEvaluationFeedback {
     font-size: 20px;
 }
 
-.sumbit {
-    border-radius: 5px;
-    
+input[type="range"] {
+    accent-color: rgb(221, 205, 241);
+  }
 
+input[type=submit] {
+    width: 150px;
+    height: 30px;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    line-height: 20px;
+    display: block;
+    margin: 20px auto;
+    font: normal 17px arial;
+}
+      
+input[type=submit]:not(.active) {
+    box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
+    background-image: linear-gradient(#3b2751, #271739);
+    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #311d47;
+}
+      
+input[type=submit]:not(.active):hover,
+input[type=submit]:not(.active):focus {
+    transition: color 200ms linear, text-shadow 500ms linear;
+    color: #76f16a;
+    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
+}
+input[type=submit]:not(:hover) {
+    transition: 0.6s;
 }
