@@ -17,10 +17,21 @@
 				<input class="textInputeFeedback" placeholder="Иванов" id="UserLastName" type="text" value="">
 				<div class="textFeedback">Электронная почта*</div>
 				<input class="textInputeFeedback" placeholder="Ivanich@mail.ru" id="UserEmail" type="text" value="">
-				<div class="textFeedback">Оцените сервис (от 1 до 5)</div>
 				<div class="new">
-					<input id="Evaluation" type="range" step="1" min="1" max="5" value="">
-					<div id="resultEvaluation" class="resultEvaluationFeedback"></div>
+					<div class="textFeedback">Оцените сервис:</div>
+					<div class="rating-area">
+						<input type="radio" id="star-5" name="rating" value="5">
+						<label for="star-5" title="Оценка «5»"></label>	
+						<input type="radio" id="star-4" name="rating" value="4">
+						<label for="star-4" title="Оценка «4»"></label>    
+						<input type="radio" id="star-3" name="rating" value="3">
+						<label for="star-3" title="Оценка «3»"></label>
+						<input type="radio" id="star-2" name="rating" value="2">
+						<label for="star-2" title="Оценка «2»"></label>    
+						<input type="radio" id="star-1" name="rating" value="1">
+						<label for="star-1" title="Оценка «1»"></label>
+						<input type="radio" id="star-0" name="rating" value="0" checked>
+					</div>
 				</div>
 				<textarea class="feedback" placeholder="Текст" id="Feedback" type="text" value="" autocomplete="off"></textarea>
 				<input class="submitFeedback" type="submit" id="submit" value="Отправить">
