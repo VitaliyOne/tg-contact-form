@@ -1,4 +1,26 @@
 /* стили для страницы */
+.dataEntryField {
+    background: linear-gradient(135deg, rgba(103, 0, 31, .7), rgba(34, 101, 163, .5));
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 5px 30px 5px 30px;
+    font-style: italic;
+    width: 220px;
+    height: auto;
+}
+
+.titleDataEntryField {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputeDataEntryField{
+    border-radius: 5px;
+    width: 220px;
+    font-style: italic;
+    border-color: rgba(255, 0, 0, .0);
+}
 .formFeedback{
     background: linear-gradient(45deg, rgba(103, 0, 31, .7), rgba(34, 101, 163, .5)); 
     display: flex;
@@ -12,7 +34,6 @@
 }
 .titleFeedback {
     font-size: 30px;
-    margin-top: 10px;
     text-shadow: 1px 1px 1px #271739;
 }
 
@@ -43,11 +64,22 @@
     font-style: italic;
 }
 
-.new {
+.ratingBlock {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
+#hideFeedbackForm {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+#hideFeedbackForm.open {
+    opacity: 0;
+    transition: 1.0s;
+    visibility: visible;
+  }
 
 input[type="range"] {
     accent-color: rgb(221, 205, 241);
@@ -79,17 +111,17 @@ input[type=submit]:not(.active):focus {
     text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
 }
 input[type=submit]:not(:hover) {
-    transition: 0.6s;
+    transition: 0s;
 }
 
-.rating-area {
+.ratingArea {
 	overflow: hidden;
     margin-top: -5px;
 }
-.rating-area:not(:checked) > input {
+.ratingArea:not(:checked) > input {
 	display: none;
 }
-.rating-area:not(:checked) > label {
+.ratingArea:not(:checked) > label {
 	float: right;
 	width: 20px;
 	cursor: pointer;
@@ -98,25 +130,22 @@ input[type=submit]:not(:hover) {
 	color: lightgrey;
 	text-shadow: 1px 1px #bbb;
 }
-.rating-area:not(:checked) > label:before {
+.ratingArea:not(:checked) > label:before {
 	content: '★';
 }
-.rating-area > input:checked ~ label {
+.ratingArea > input:checked ~ label {
 	color: gold;
 	text-shadow: 1px 1px #c60;
 }
-.rating-area:not(:checked) > label:hover,
-.rating-area:not(:checked) > label:hover ~ label {
+.ratingArea:not(:checked) > label:hover,
+.ratingArea:not(:checked) > label:hover ~ label {
 	color: gold;
 }
-.rating-area > input:checked + label:hover,
-.rating-area > input:checked + label:hover ~ label,
-.rating-area > input:checked ~ label:hover,
-.rating-area > input:checked ~ label:hover ~ label,
-.rating-area > label:hover ~ input:checked ~ label {
+.ratingArea > input:checked + label:hover,
+.ratingArea > input:checked + label:hover ~ label,
+.ratingArea > input:checked ~ label:hover,
+.ratingArea > input:checked ~ label:hover ~ label,
+.ratingArea > label:hover ~ input:checked ~ label {
 	color: gold;
 	text-shadow: 1px 1px goldenrod;
-}
-.rate-area > label:active {
-	position: relative;
 }
