@@ -84,40 +84,30 @@ function getRatingText (evaluation) {
       return "Хорошо";
     case '5':
       return "Отлично";
-    default : //если попадает что-то лишнее
+    default : //если попадает что-либо вне диапазона
       return 'не выбрана';
   }
 }
 
-function validateBotForm () {//разбить на функции валидации, подкраски, алерт
+function validateBotForm () {
   const tokenInput = document.getElementById('token')
   const chatIdInput = document.getElementById('chatId')
-  if (tokenInput || chatIdInput) {
-    changingColorBotForm ()
-    return alertFillBotForm ()
-  }
-}
-
-function changingColorBotForm () {
-  const tokenInput = document.getElementById('token')
-  const chatIdInput = document.getElementById('chatId')
-  if (tokenInput.value === '') {
-    tokenInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
-  }
-  if (chatIdInput.value === '') {
-      chatIdInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
-  }
-}
-
-function alertFillBotForm (){
-  const tokenInput = document.getElementById('token')
-  const chatIdInput = document.getElementById('chatId')
-  if (tokenInput.value === '' || chatIdInput.value === '') {
-    alert('Заполните обязательные поля формы')
+  if ((tokenInput && !tokenInput.value) || (chatIdInput && !chatIdInput.value)) {
+    changingColorBotForm (tokenInput, chatIdInput)
+    alert('Заполните обязательные поля');
     isBotFormInValid = true;
     return false
   } else {
     return true
+  }
+}
+
+function changingColorBotForm (tokenInput, chatIdInput) {
+  if (!tokenInput.value) {
+    tokenInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
+  }
+  if (!chatIdInput.value) {
+      chatIdInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
   }
 }
    
@@ -125,72 +115,61 @@ document.querySelectorAll(".inputeDataEntryField").forEach(elem => elem.addEvent
  () => {
       if (isBotFormInValid) {
         const tokenInput = document.getElementById('token');
-        if (tokenInput && tokenInput.value !== '') {
+        if (tokenInput && tokenInput.value) {
           tokenInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
         const chatIdInput =  document.getElementById('chatId');
-        if (chatIdInput && chatIdInput.value !== '') {
+        if (chatIdInput && chatIdInput.value) {
           chatIdInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
       }
   }));
 
 function validateForm (){
-    const userFirstNameInput = document.getElementById("userFirstName");
-    const userEmailImput = document.getElementById("userEmail");
-    if (userFirstNameInput || userEmailImput) {
-      changingColorForm ();
-      return alertFillForm ();
-    } 
-};
-
-function changingColorForm () {
   const userFirstNameInput = document.getElementById("userFirstName");
   const userEmailImput = document.getElementById("userEmail");
-  if (userFirstNameInput.value === '') {
+  if ((userFirstNameInput && !userFirstNameInput.value)|| (userEmailImput && !userEmailImput.value)) {
+     changingColorForm (userFirstNameInput, userEmailImput);
+     alert('Заполните обязательные поля');
+     isFormInValid = true;
+     return false
+   } else {
+     return true
+  } 
+};
+
+function changingColorForm (userFirstNameInput, userEmailImput) {
+  if (!userFirstNameInput.value) {
     userFirstNameInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
     }
-if (userEmailImput.value === '') {
+  if (!userEmailImput.value) {
     userEmailImput.style.cssText = "border-color: rgba(255, 0, 0, .7);";
   }
 }
-
-function alertFillForm (){
-  const userFirstNameInput = document.getElementById("userFirstName");
-  const userEmailImput = document.getElementById("userEmail");
-  if (userFirstNameInput.value === '' || userEmailImput.value === '') {
-    alert('Заполните обязательные поля формы') 
-    isFormInValid = true;
-    return false
-  } else {
-    return true
-  }
-}
-
 
 document.querySelectorAll(".textInputeFeedback").forEach(elem => elem.addEventListener("keydown",
  () => {
       if (isFormInValid) {
         const userEmailInput = document.getElementById('userEmail');
         const userFirstNameInput =  document.getElementById('userFirstName');
-        if (userEmailInput && userEmailInput.value !== '') {
+        if (userEmailInput && userEmailInput.value) {
           userEmailInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
-        if (userFirstNameInput &&  userFirstNameInput.value !== '') {
+        if (userFirstNameInput && userFirstNameInput.value) {
           userFirstNameInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
       }
   }));
 
   function hideBotDataForm () {
-    const formCollapse = document.getElementById('formCollapse')
+    const formCollapse = document.getElementById('formCollapse');
     if (formCollapse) {
       formCollapse.style.display='none';
     }
   }
   
   function showFeedBackForm () {
-    const hideFeedbackForm = document.getElementById('hideFeedbackForm')
+    const hideFeedbackForm = document.getElementById('hideFeedbackForm');
     if (hideFeedbackForm) {
     hideFeedbackForm.classList.add('open');
     hideFeedbackForm.style.opacity='1';
