@@ -2,20 +2,38 @@
 //const botToken = 'bot6525982560:AAFDLrlGgnm3_S4tzx3RMYJIOUfg0cHT0OI';
 //const botChatId = '951317487';
 const telegramApiUrl = 'https://api.telegram.org/';
-let botToken = localStorage.getItem('localBotToken');
-let botChatId = localStorage.getItem('localBotChatId');
+const LOCAL_BOT_TOKEN_KEY = 'localBotToken';
+const LOCAL_BOT_CHAT_ID_KEY = 'localBotChatId';
 let isBotFormInValid = false;
 let isFormInValid = false;
 
+const getBotToken = () => {
+  return localStorage.getItem(LOCAL_BOT_TOKEN_KEY);
+}
+
+const setBotToken = (value) => {
+  localStorage.setItem(LOCAL_BOT_TOKEN_KEY, value);
+}
+
+const getBotChatId = () => {
+  return localStorage.getItem(LOCAL_BOT_CHAT_ID_KEY);
+}
+
+const setBotChatId = (value) => {
+  localStorage.setItem(LOCAL_BOT_CHAT_ID_KEY, value);
+}
+
 window.onload = function(){
+  const botToken = getBotToken();
+  const botChatId = getBotChatId();
   if (botToken && botChatId) {
     const tokenInput = document.getElementById("token");
     if (tokenInput) {
-      tokenInput.value = `${botToken}`;
+      tokenInput.value = botToken;
     }
     const chaIdInput = document.getElementById("chatId")
     if (chaIdInput) {
-      chaIdInput.value = `${botChatId}`;
+      chaIdInput.value = botChatId;
     }
     hideBotDataForm();
     showFeedBackForm();
@@ -34,7 +52,8 @@ submit.onclick = function(event) {
     const userEmailText = (userEmailImput || {}).value;
     const messageInput = document.getElementById("message");
     const messageText = (messageInput|| {}).value;
-
+    const botToken = getBotToken();
+    const botChatId = getBotChatId();
     const getFeedbackFormMessage = `Имя:  ${userFirstNameText} ${userLastNameText} %0AОценка:  ${ratingText} %0AЭлектронная почта:  ${userEmailText} %0AСообщение:  ${encodeURIComponent(messageText)}`;
     fetch(telegramApiUrl+botToken+'/sendMessage?chat_id='+botChatId+`&text=`+getFeedbackFormMessage)
     .then(response => {
@@ -61,8 +80,10 @@ saveBotDataButton.onclick = function(event) {
 }
 
 function saveBotData () {
-    localStorage.setItem('localBotToken', `${token.value}`);
-    localStorage.setItem('localBotChatId', `${chatId.value}`);
+  setBotToken(`${token.value}`);
+  setBotChatId(`${chatId.value}`);
+/*   botToken = localStorage.getItem('localBotToken');
+  botChatId = localStorage.getItem('localBotChatId'); */
 }
 
 botDataFormTitle.onclick = function(event){
@@ -84,40 +105,30 @@ function getRatingText (evaluation) {
       return "Хорошо";
     case '5':
       return "Отлично";
-    default : //если попадает что-то лишнее
+    default : //если попадает что-либо вне диапазона
       return 'не выбрана';
   }
 }
 
-function validateBotForm () {//разбить на функции валидации, подкраски, алерт
+function validateBotForm () {
   const tokenInput = document.getElementById('token')
   const chatIdInput = document.getElementById('chatId')
-  if (tokenInput || chatIdInput) {
-    changingColorBotForm ()
-    return alertFillBotForm ()
-  }
-}
-
-function changingColorBotForm () {
-  const tokenInput = document.getElementById('token')
-  const chatIdInput = document.getElementById('chatId')
-  if (tokenInput.value === '') {
-    tokenInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
-  }
-  if (chatIdInput.value === '') {
-      chatIdInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
-  }
-}
-
-function alertFillBotForm (){
-  const tokenInput = document.getElementById('token')
-  const chatIdInput = document.getElementById('chatId')
-  if (tokenInput.value === '' || chatIdInput.value === '') {
-    alert('Заполните обязательные поля формы')
+  if ((tokenInput && !tokenInput.value) || (chatIdInput && !chatIdInput.value)) {
+    changingColorBotForm (tokenInput, chatIdInput)
+    alert('Заполните обязательные поля');
     isBotFormInValid = true;
     return false
   } else {
     return true
+  }
+}
+
+function changingColorBotForm (tokenInput, chatIdInput) {
+  if (!tokenInput.value) {
+    tokenInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
+  }
+  if (!chatIdInput.value) {
+      chatIdInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
   }
 }
    
@@ -125,72 +136,61 @@ document.querySelectorAll(".inputeDataEntryField").forEach(elem => elem.addEvent
  () => {
       if (isBotFormInValid) {
         const tokenInput = document.getElementById('token');
-        if (tokenInput && tokenInput.value !== '') {
+        if (tokenInput && tokenInput.value) {
           tokenInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
         const chatIdInput =  document.getElementById('chatId');
-        if (chatIdInput && chatIdInput.value !== '') {
+        if (chatIdInput && chatIdInput.value) {
           chatIdInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
       }
   }));
 
 function validateForm (){
-    const userFirstNameInput = document.getElementById("userFirstName");
-    const userEmailImput = document.getElementById("userEmail");
-    if (userFirstNameInput || userEmailImput) {
-      changingColorForm ();
-      return alertFillForm ();
-    } 
-};
-
-function changingColorForm () {
   const userFirstNameInput = document.getElementById("userFirstName");
   const userEmailImput = document.getElementById("userEmail");
-  if (userFirstNameInput.value === '') {
+  if ((userFirstNameInput && !userFirstNameInput.value)|| (userEmailImput && !userEmailImput.value)) {
+     changingColorForm (userFirstNameInput, userEmailImput);
+     alert('Заполните обязательные поля');
+     isFormInValid = true;
+     return false
+   } else {
+     return true
+  } 
+};
+
+function changingColorForm (userFirstNameInput, userEmailImput) {
+  if (!userFirstNameInput.value) {
     userFirstNameInput.style.cssText = "border-color: rgba(255, 0, 0, .7)";
     }
-if (userEmailImput.value === '') {
+  if (!userEmailImput.value) {
     userEmailImput.style.cssText = "border-color: rgba(255, 0, 0, .7);";
   }
 }
-
-function alertFillForm (){
-  const userFirstNameInput = document.getElementById("userFirstName");
-  const userEmailImput = document.getElementById("userEmail");
-  if (userFirstNameInput.value === '' || userEmailImput.value === '') {
-    alert('Заполните обязательные поля формы') 
-    isFormInValid = true;
-    return false
-  } else {
-    return true
-  }
-}
-
 
 document.querySelectorAll(".textInputeFeedback").forEach(elem => elem.addEventListener("keydown",
  () => {
       if (isFormInValid) {
         const userEmailInput = document.getElementById('userEmail');
         const userFirstNameInput =  document.getElementById('userFirstName');
-        if (userEmailInput && userEmailInput.value !== '') {
+        if (userEmailInput && userEmailInput.value) {
           userEmailInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
-        if (userFirstNameInput &&  userFirstNameInput.value !== '') {
+        if (userFirstNameInput && userFirstNameInput.value) {
           userFirstNameInput.style.cssText = "border-color: rgba(255, 0, 0, .0);";
         }
       }
   }));
 
   function hideBotDataForm () {
-    const formCollapse = document.getElementById('formCollapse')
+    const formCollapse = document.getElementById('formCollapse');
     if (formCollapse) {
       formCollapse.style.display='none';
     }
   }
   
   function showFeedBackForm () {
-    const hideFeedbackForm = document.getElementById('hideFeedbackForm')
+    const hideFeedbackForm = document.getElementById('hideFeedbackForm');
     if (hideFeedbackForm) {
     hideFeedbackForm.classList.add('open');
     hideFeedbackForm.style.opacity='1';
