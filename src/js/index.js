@@ -2,20 +2,38 @@
 //const botToken = 'bot6525982560:AAFDLrlGgnm3_S4tzx3RMYJIOUfg0cHT0OI';
 //const botChatId = '951317487';
 const telegramApiUrl = 'https://api.telegram.org/';
-let botToken = localStorage.getItem('localBotToken');
-let botChatId = localStorage.getItem('localBotChatId');
+const LOCAL_BOT_TOKEN_KEY = 'localBotToken';
+const LOCAL_BOT_CHAT_ID_KEY = 'localBotChatId';
 let isBotFormInValid = false;
 let isFormInValid = false;
 
+const getBotToken = () => {
+  return localStorage.getItem(LOCAL_BOT_TOKEN_KEY);
+}
+
+const setBotToken = (value) => {
+  localStorage.setItem(LOCAL_BOT_TOKEN_KEY, value);
+}
+
+const getBotChatId = () => {
+  return localStorage.getItem(LOCAL_BOT_CHAT_ID_KEY);
+}
+
+const setBotChatId = (value) => {
+  localStorage.setItem(LOCAL_BOT_CHAT_ID_KEY, value);
+}
+
 window.onload = function(){
+  const botToken = getBotToken();
+  const botChatId = getBotChatId();
   if (botToken && botChatId) {
     const tokenInput = document.getElementById("token");
     if (tokenInput) {
-      tokenInput.value = `${botToken}`;
+      tokenInput.value = botToken;
     }
     const chaIdInput = document.getElementById("chatId")
     if (chaIdInput) {
-      chaIdInput.value = `${botChatId}`;
+      chaIdInput.value = botChatId;
     }
     hideBotDataForm();
     showFeedBackForm();
@@ -34,7 +52,8 @@ submit.onclick = function(event) {
     const userEmailText = (userEmailImput || {}).value;
     const messageInput = document.getElementById("message");
     const messageText = (messageInput|| {}).value;
-
+    const botToken = getBotToken();
+    const botChatId = getBotChatId();
     const getFeedbackFormMessage = `Имя:  ${userFirstNameText} ${userLastNameText} %0AОценка:  ${ratingText} %0AЭлектронная почта:  ${userEmailText} %0AСообщение:  ${encodeURIComponent(messageText)}`;
     fetch(telegramApiUrl+botToken+'/sendMessage?chat_id='+botChatId+`&text=`+getFeedbackFormMessage)
     .then(response => {
@@ -61,8 +80,10 @@ saveBotDataButton.onclick = function(event) {
 }
 
 function saveBotData () {
-    localStorage.setItem('localBotToken', `${token.value}`);
-    localStorage.setItem('localBotChatId', `${chatId.value}`);
+  setBotToken(`${token.value}`);
+  setBotChatId(`${chatId.value}`);
+/*   botToken = localStorage.getItem('localBotToken');
+  botChatId = localStorage.getItem('localBotChatId'); */
 }
 
 botDataFormTitle.onclick = function(event){

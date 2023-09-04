@@ -1,12 +1,12 @@
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
 
-const paths = ['./src/*.html', './src/css/*.css', './src/js/*.js'];
+const paths = ['./*.html', './src/css/*.css', './src/js/*.js'];
 
 gulp.task('browserSync', function () {
 	browserSync.init({
 		server: {
-			baseDir: './src/',
+			baseDir: '.',
 		},
 	});
 
