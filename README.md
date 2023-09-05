@@ -1,7 +1,7 @@
 ## Форма обратной связи через телеграм бота
 
 
-[Ссылка](https://vitaliyone.github.io/tg-contact-form/) для просмотра формы на GitHub Pages.
+[Ссылка](https://vitaliyone.github.io/tg-contact-form/) для просмотра страницы на GitHub Pages.
 ## Установка
 
 Требования:
