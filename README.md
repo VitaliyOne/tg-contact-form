@@ -1,17 +1,17 @@
-## Форма обратной связи через телеграм бота
+## Telegram contact form
 
 
-[Ссылка](https://vitaliyone.github.io/tg-contact-form/) для просмотра страницы на GitHub Pages.
-## Установка
+Live demo: https://vitaliyone.github.io/tg-contact-form/
+## Installation
 
-Требования:
+Requirements:
 
 - NodeJS: https://nodejs.org/en/
 
 ```bash
-# установить зависимости
+# install dependencies
 $ npm install
 
-# запуск
+# launch
 $ npm start
 ```
