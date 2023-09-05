@@ -6,46 +6,55 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>HTML Template</title>
 		<link rel="stylesheet" href="src/css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<div id="formWrapBot" class="dataEntryField">
-			<div id="botDataFormTitle" class="titleDataEntryField titleFeedback">Ввод данных</div>
-				<div id="formCollapse">
+		<div class="backgroundForm"></div>
+		<div class ="dataEntryForm">
+			<div>
+				<form id="formWrapBot" class="dataEntryField">
+					<div id="botDataFormTitle" class="titleDataEntryField">Ввод данных</div>
 					<div id="formBotTokenСollapse" class="textFeedback">Бот токен API*</div>
-					<input class="inputDataEntryField" placeholder="6525982288:AAFDLrlGg..." id="token" type="text" value="">
+					<input class="inputDataEntryField" placeholder="6525982288:AAFDLrlGg..." id="token" type="text" value="" required>
 					<div id="formChatIdСollapse" class="textFeedback">ID чата*</div>
-					<input class="inputDataEntryField" placeholder="951371587" id="chatId" type="text" value="">
+					<input class="inputDataEntryField" placeholder="951371587" id="chatId" type="text" value="" required>
 					<input class="submitFeedback" type="submit" id="saveBotDataButton" value="Сохранить">
+				</form>
+				<div id="hideFeedbackForm" class="dataEntryField">
+					<div class="titleDataEntryField">Напишите нам</div>
+					<form onsubmit="return false" class="form" action="" method="get">
+						<div class="textFeedback">Имя*</div>
+						<input class="inputDataEntryField" placeholder="Иван" id="userFirstName" type="text" value="" required>
+						<div class="textFeedback">Отчество</div>
+						<input class="inputDataEntryField" placeholder="Иванович" id="userLastName" type="text" value="">
+						<div class="textFeedback">Электронная почта*</div>
+						<input class="inputDataEntryField" placeholder="Ivanich@mail.ru" id="userEmail" type="text" value="" required>
+						<div class="ratingBlock">
+							<div class="textFeedback textRadioFeedback">Оцените сервис:</div>
+							<div class="ratingArea">
+								<input type="radio" id="star-5" name="rating" value="5">
+								<label for="star-5" title="Оценка «5»"></label>	
+								<input type="radio" id="star-4" name="rating" value="4">
+								<label for="star-4" title="Оценка «4»"></label>    
+								<input type="radio" id="star-3" name="rating" value="3">
+								<label for="star-3" title="Оценка «3»"></label>
+								<input type="radio" id="star-2" name="rating" value="2">
+								<label for="star-2" title="Оценка «2»"></label>    
+								<input type="radio" id="star-1" name="rating" value="1">
+								<label for="star-1" title="Оценка «1»"></label>
+								<input type="radio" id="star-0" name="rating" value="0" checked>
+							</div>
+						</div>
+						<textarea class="inputDataEntryField feedback" placeholder="Текст" id="message" type="text" value="" autocomplete="off" ></textarea>
+						<input class="submitFeedback" type="submit" id="submit" value="Отправить">
+					</form>
 				</div>
-		</div>
-		<div id="hideFeedbackForm" class="formFeedback">
-			<div class="titleFeedback">Напишите нам</div>
-			<form onsubmit="return false" class="form" action="" method="get">
-				<div class="textFeedback">Имя*</div>
-				<input class="textInputeFeedback" placeholder="Иван" id="userFirstName" type="text" value="">
-				<div class="textFeedback">Отчество</div>
-				<input class="textInputeFeedback" placeholder="Иванов" id="userLastName" type="text" value="">
-				<div class="textFeedback">Электронная почта*</div>
-				<input class="textInputeFeedback" placeholder="Ivanich@mail.ru" id="userEmail" type="text" value="">
-				<div class="ratingBlock">
-					<div class="textFeedback">Оцените сервис:</div>
-					<div class="ratingArea">
-						<input type="radio" id="star-5" name="rating" value="5">
-						<label for="star-5" title="Оценка «5»"></label>	
-						<input type="radio" id="star-4" name="rating" value="4">
-						<label for="star-4" title="Оценка «4»"></label>    
-						<input type="radio" id="star-3" name="rating" value="3">
-						<label for="star-3" title="Оценка «3»"></label>
-						<input type="radio" id="star-2" name="rating" value="2">
-						<label for="star-2" title="Оценка «2»"></label>    
-						<input type="radio" id="star-1" name="rating" value="1">
-						<label for="star-1" title="Оценка «1»"></label>
-						<input type="radio" id="star-0" name="rating" value="0" checked>
-					</div>
+			</div>
+				<div>
+					<img class="imgTelegramFeedback" src="src/img/imgTelegramFeedback.jpg" >
 				</div>
-				<textarea class="feedback" placeholder="Текст" id="message" type="text" value="" autocomplete="off"></textarea>
-				<input class="submitFeedback" type="submit" id="submit" value="Отправить">
-			</form>
 		</div>
 		<script src="src/js/index.js"></script>
 	</body>

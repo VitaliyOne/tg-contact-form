@@ -1,67 +1,91 @@
 /* стили для страницы */
+html{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.backgroundForm {
+    background: linear-gradient(135deg, rgba(0, 136, 204, 0.5), rgba(194, 193, 193, 0.4));
+    width: 100vw;
+    height: 100vh;
+}
+
+.dataEntryForm {
+    position: fixed; top: 50%; left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: flex;
+    font-family: 'Source Sans 3', sans-serif;
+    border-radius:5px;
+ }
+
 .dataEntryField {
-    background: linear-gradient(135deg, rgba(103, 0, 31, .7), rgba(34, 101, 163, .5));
+    background: rgba(255, 255, 255, 0.9);
     flex-direction: column;
-    border-radius: 15px;
-    padding: 5px 30px 5px 30px;
-    font-style: italic;
-    width: 220px;
+    padding: 20px 30px 15px 30px;
+    width: 250px;
     height: auto;
+    border-radius:5px;
+}
+
+#formWrapBot {
+    margin-bottom: 15px;
 }
 
 .titleDataEntryField {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+
 }
 
 .inputDataEntryField {
-    border-radius: 5px;
-    width: 220px;
-    font-style: italic;
-    border-color: rgba(255, 0, 0, .0);
-}
-.formFeedback {
-    background: linear-gradient(45deg, rgba(103, 0, 31, .7), rgba(34, 101, 163, .5)); 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    border-radius: 15px;
-    padding: 30px;
-    font-style: italic;
-}
-.titleFeedback {
-    font-size: 30px;
-    text-shadow: 1px 1px 1px #271739;
-}
-
-.formFeedback {
-    width: 220px;
-    font-size: 20px;
-    height: 350px;
-    text-shadow: 0.25px 0.25px 0.25px #271739;
+    font-size: 15px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-color: #6d6c6c2a;
+    border-width: 0.5px;
+    outline: rgba(128, 128, 128, 0.644);
+    height: 25px;
+    border-radius:3px;
+    padding-left: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .textFeedback {
-    font-size: 15px;
-    padding-top: 5px
-}
-
-.textInputeFeedback {
-    border-radius: 5px;
-    width: 220px;
-    font-style: italic;
-    border-color: rgba(255, 0, 0, .0);
+    font-size: 12px;
+    padding-top: 10px
+    
 }
 
 .feedback {
-    border-radius: 5px;
     font-size: 15px;
-    height: 120px;
-    width: 220px;
-    font-style: italic;
+    margin-top: 5px;
+    width: 250px;
+    border-color: #6d6c6c2a;
+    border-width: 0.5px;
+    outline: rgba(128, 128, 128, 0.6);
+    height: 90px;
+    position:relative;
+    z-index:2;
+}
+
+.imgTelegramFeedback {
+    width: 350px;
+    height: 100%;
+    margin-left: 15px;
+    border-radius:5px;
+    z-index: 0;
+    max-height: 800px;
+}
+
+.textRadioFeedback {
+    font-size: 15px;
+    padding-top: 5px;
 }
 
 .ratingBlock {
@@ -73,13 +97,18 @@
 #hideFeedbackForm {
     visibility: hidden;
     opacity: 0;
-  }
+}
 
 #hideFeedbackForm.open {
     opacity: 0;
     transition: 1.0s;
     visibility: visible;
-  }
+}
+
+textarea:focus, input:focus {
+    border-color: rgba(128, 128, 128, 0.199);
+    background-color: rgba(128, 128, 128, 0.05);
+}
 
 input[type="range"] {
     accent-color: rgb(221, 205, 241);
@@ -93,30 +122,28 @@ input[type=submit] {
     text-align: center;
     line-height: 20px;
     display: block;
-    margin: 20px auto;
-    font: normal 17px arial;
+    margin: 15px auto;
+    font-size: 15px;
+    border: 0;
+    border-radius:5px;
 }
       
 input[type=submit]:not(.active) {
-    box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
-    background-image: linear-gradient(#3b2751, #271739);
-    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #311d47;
-    font-style: italic;
+    background-color: #0088cc
 }
       
-input[type=submit]:not(.active):hover,
-input[type=submit]:not(.active):focus {
-    transition: color 200ms linear, text-shadow 500ms linear;
-    color: #76f16a;
-    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
+input[type=submit]:not(.active):hover
+/* input[type=submit]:not(.active):focus */ {
+    transition: color 200ms linear;
+    color: #000000;
 }
+
 input[type=submit]:not(:hover) {
     transition: 0s;
 }
 
 .ratingArea {
 	overflow: hidden;
-    margin-top: -5px;
 }
 .ratingArea:not(:checked) > input {
 	display: none;
