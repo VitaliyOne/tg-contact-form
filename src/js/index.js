@@ -1,4 +1,4 @@
-// скрипты
+// js scripts
 const telegramApiUrl = 'https://api.telegram.org/';
 const LOCAL_BOT_TOKEN_KEY = 'localBotToken';
 const LOCAL_BOT_CHAT_ID_KEY = 'localBotChatId';
